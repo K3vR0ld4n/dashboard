@@ -91,11 +91,10 @@ let cargarOpenMeteo = () => {
     .catch(console.error);
 };
 
-
 let cargarOpenMeteo2 = () => {
   //URL que responde con la respuesta a cargar
   let URL =
-"https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&hourly=precipitation_probability,cloudcover&timezone=auto"
+    "https://api.open-meteo.com/v1/forecast?latitude=-2.1962&longitude=-79.8862&hourly=precipitation_probability,cloudcover&timezone=auto";
   fetch(URL)
     .then((responseText) => responseText.json())
     .then((responseJSON) => {
@@ -110,35 +109,119 @@ let cargarOpenMeteo2 = () => {
       let labels = responseJSON.hourly.time;
 
       //Etiquetas de los datos
-      let data = [responseJSON.hourly.precipitation_probability, responseJSON.hourly.cloudcover]
-
+      let data = [
+        responseJSON.hourly.precipitation_probability,
+        responseJSON.hourly.cloudcover,
+      ];
+      console.log(responseJSON.hourly);
       //Objeto de configuración del gráfico
       let config = {
         type: "line",
         data: {
           labels: labels,
-          datasets: [
-            {
-              label: "precipitation_probability",
-              data: data[0],
-            },
-            {
-              label: "cloudcover",
-              data: data[1],
-            },
-          ],
+          datasets: [],
         },
       };
 
+      for (var i = 0; i < data.length; i++) {
+        console.log("aaaaa", data[i]);
+        config.data.datasets.push({
+          label: "data",
+          data: data[i],
+        });
+      }
       //Objeto con la instanciación del gráfico
       let chart1 = new Chart(plotRef, config);
     })
     .catch(console.error);
 };
 
-
-
 cargarPrecipitacion();
 cargarFechaActual();
 cargarOpenMeteo();
 cargarOpenMeteo2();
+
+//CLASE 3
+
+let parseXML = (responseText) => {
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(responseText, "application/xml");
+
+  // Referencia al elemento `#forecastbody` del documento HTML
+
+  let forecastElement = document.querySelector("#forecastbody");
+  forecastElement.innerHTML = "";
+
+  // Procesamiento de los elementos con etiqueta `<time>` del objeto xml
+  let timeArr = xml.querySelectorAll("time");
+
+  timeArr.forEach((time) => {
+    let from = time.getAttribute("from").replace("T", " ");
+
+    let humidity = time.querySelector("humidity").getAttribute("value");
+    let windSpeed = time.querySelector("windSpeed").getAttribute("mps");
+    let precipitation = time
+      .querySelector("precipitation")
+      .getAttribute("probability");
+    let pressure = time.querySelector("pressure").getAttribute("value");
+    let cloud = time.querySelector("clouds").getAttribute("all");
+
+    let template = `
+          <tr>
+              <td>${from}</td>
+              <td>${humidity}</td>
+              <td>${windSpeed}</td>
+              <td>${precipitation}</td>
+              <td>${pressure}</td>
+              <td>${cloud}</td>
+          </tr>
+      `;
+
+    //Renderizando la plantilla en el elemento HTML
+    forecastElement.innerHTML += template;
+  });
+};
+
+// Callback async
+let selectListener = async (event) => {
+  let selectedCity = event.target.value;
+
+  let cityStorage = localStorage.getItem(selectedCity);
+
+  if (cityStorage == null) {
+    try {
+      //API key
+      let APIkey = "d33cc0a95aca9c04cf35531de58b502d";
+      let url = `https://api.openweathermap.org/data/2.5/forecast?q=${selectedCity}&mode=xml&appid=${APIkey}`;
+
+      let response = await fetch(url);
+      let responseText = await response.text();
+
+      await localStorage.setItem(selectedCity, responseText);
+
+      await parseXML(responseText);
+
+      // Guarde la entrada de almacenamiento local
+
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    // Procese un valor previo
+    parseXML(cityStorage);
+  }
+};
+
+let loadForecastByCity = () => {
+  //Handling event
+  let selectElement = document.querySelector("select");
+  selectElement.addEventListener("change", selectListener);
+};
+
+
+let verifyLocalTime=()=>{
+  
+}
+
+
+loadForecastByCity();
