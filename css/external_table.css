@@ -1,0 +1,16 @@
+
+table.default tr:not(:nth-child(-n+8)) {
+    display: none;
+  }
+  
+  table {
+    border-collapse: collapse; /* Combina los bordes de las celdas en una sola línea */
+  }
+  
+  td, th {
+    border-bottom: 1px solid #000; /* Añade borde inferior a celdas y encabezados */
+  }
+  
+  td:not(:last-child), th:not(:last-child) {
+    border-right: none; /* Elimina el borde derecho para todas las celdas y encabezados, excepto el último */
+  }
