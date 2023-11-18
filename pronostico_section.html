@@ -25,7 +25,6 @@
     />
     <!-- Custom styles -->
     <link rel="stylesheet" href="css/style.css" />
-
   </head>
 
   <body>
@@ -47,8 +46,8 @@
               <span>Monitoreo de Inundaciones</span>
             </a>
             <a
-              href="#"
-              class="list-group-item list-group-item-action py-2 ripple active"
+              href="index.html"
+              class="list-group-item list-group-item-action py-2 ripple"
             >
               <i class="fas fa-city fa-fw me-3"></i>
               <span>Guayaquil</span>
@@ -65,12 +64,12 @@
               ><i class="fas fa-landmark fa-fw me-3"></i> <span>Quito</span></a
             >
             <a
-              href="pronostico_section.html"
-              class="list-group-item list-group-item-action py-2 ripple"
+              href="#"
+              class="list-group-item list-group-item-action py-2 ripple active"
               aria-current="true"
             >
-            <i class="fas fa-sun fa-fw me-3"></i>
-            <span>Pronóstico del Tiempo</span>
+              <i class="fas fa-sun fa-fw me-3"></i>
+              <span>Pronóstico del Tiempo</span>
             </a>
           </div>
         </div>
@@ -107,25 +106,21 @@
             />
           </a>
           <a class="navbar-brand" href="#">
-            <img
-              src="img/logo.png"
-              height="50"
-              alt=""
-              loading="lazy"
-            />
+            <img src="img/logo.png" height="50" alt="" loading="lazy" />
           </a>
 
           <!-- Right links -->
           <ul class="navbar-nav ms-auto d-flex flex-row">
-           
             <!-- Icon -->
             <li class="nav-item me-3 me-lg-0">
-              <a class="nav-link" href="https://github.com/K3vR0ld4n/dashboard" target="_blank">
+              <a
+                class="nav-link"
+                href="https://github.com/K3vR0ld4n/dashboard"
+                target="_blank"
+              >
                 <i class="fab fa-github"></i>
               </a>
             </li>
-
-            
 
             <!-- Avatar -->
             <li class="nav-item dropdown">
@@ -165,100 +160,31 @@
     <!--Main layout-->
     <main style="margin-top: 58px">
       <div class="container pt-4">
-        <!-- Section: Short Statistics -->
-        <div class="row short-statistics">
-          <div class="col-xl-3 col-sm-6 col-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between px-md-1">
-                  <div class="align-self-center">
-                    <i class="fas fa-thermometer-half text-danger fa-3x"></i>
-                  </div>
-                  <div class="text-end temperature">
-                    <h3>?°C</h3>
-                    <p class="mb-0">Temperatura</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 col-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between px-md-1">
-                  <div class="align-self-center">
-                    <i class="fas fa-arrows-alt text-success fa-3x"></i>
-                  </div>
-                  <div class="text-end longitude">
-                    <h3>-----</h3>
-                    <p class="mb-0">Longitud</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 col-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between px-md-1">
-                  <div class="align-self-center">
-                    <i class="fas fa-globe text-primary fa-3x"></i>
-                  </div>
-                  <div class="text-end latitude">
-                    <h3>-----</h3>
-                    <p class="mb-0">Latitud</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-6 col-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between px-md-1">
-                  <div class="align-self-center clima_WMO-icon">
-                    <i class="fas fa-map-marker-alt text-danger fa-3x"></i>
-                  </div>
-                  <div class="text-end clima_WMO">
-                    <h3>00</h3>
-                    <p class="mb-0">Clima WMO</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Section: Short Statistics -->
-
-        <!-- Section: Main chart -->
         <section class="mb-4">
           <div class="card">
-            <div class="card-header py-3">
+            <div class="card-header text-center py-3">
               <h5 class="mb-0 text-center">
-                <strong>Temperatura Semanal</strong>
+                <strong>Descubre cómo el Clima Impacta en tu Ciudad</strong>
               </h5>
             </div>
+
             <div class="card-body">
-              <canvas class="my-4 w-100" id="myChart1" height="380"></canvas>
+              <p class="card-text">
+                ¡Bienvenido a nuestra sección de Pronóstico del Clima! Explora
+                la atmosfera de tres vibrantes ciudades ecuatorianas: Guayaquil,
+                Quito y Machala. A través de nuestra tabla detallada, te
+                proporcionaremos datos meteorológicos relevantes para que estés
+                siempre informado sobre las condiciones climáticas actuales y
+                futuras. Desde temperaturas y precipitaciones hasta información
+                sobre la humedad y la velocidad del viento, nuestro pronóstico
+                del clima está diseñado para brindarte la información precisa
+                que necesitas para planificar tu día. <br /><br />¡Descubre cómo
+                el clima impacta estas ciudades y mantente un paso adelante en
+                tus actividades diarias!
+              </p>
             </div>
           </div>
         </section>
-
-        <section class="mb-4">
-          <div class="card">
-            <div class="card-header py-3">
-              <h5 class="mb-0 text-center">
-                <strong
-                  >Sensación Térmica y Probabilidad de Precipitación</strong
-                >
-              </h5>
-            </div>
-            <div class="card-body">
-              <canvas class="my-4 w-100" id="myChart2" height="380"></canvas>
-            </div>
-          </div>
-        </section>
-        <!-- Section: Main chart -->
 
         <!--Section: Table-->
         <section class="mb-4">
@@ -301,7 +227,7 @@
                             ></i>
                           </div>
                           <div>
-                            <h4>Dia</h4>
+                            <h4>Ciudad</h4>
                             <p class="mb-0">Pronostico del tiempo</p>
                           </div>
                         </div>
@@ -310,7 +236,7 @@
                             class="day-select form-select form-select-lg mb-3"
                             aria-label="Default select example"
                           >
-                            <option selected>Ciudades</option>
+                            <option value="Ciudades" selected>Ciudades</option>
                             <option value="Machala">Machala</option>
                             <option value="Guayaquil">Guayaquil</option>
                             <option value="Quito">Quito</option>
@@ -342,8 +268,6 @@
           </div>
         </section>
         <!--Section: Table-->
-
-        
       </div>
     </main>
     <!--Main layout-->
@@ -358,8 +282,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
     <!-- Custom scripts -->
-    <script type="module" src="js/weather_code.js"></script>
+    <script type="module" src="js/forecast.js"></script>
 
-    <script type="module" src="js/load_data.js"></script>
+    
   </body>
 </html>
