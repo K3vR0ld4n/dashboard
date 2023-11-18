@@ -196,8 +196,6 @@ let parseXML = (responseText, day) => {
 
 let loadForecast = async (event) => {
   let day = event && event.target ? event.target.value : "boot";
-
-  //let selectedCity = document.querySelector(".active span").textContent;
   let cityStorage = localStorage.getItem(selectedCity);
 
   if (cityStorage == null) {
@@ -233,8 +231,10 @@ function updateClock() {
   let minutes = date.getMinutes();
   let seconds = date.getSeconds();
   let formattedSeconds = seconds <= 9 ? `0${seconds}` : seconds;
+  let formattedMinutes = seconds <= 9 ? `0${minutes}` : minutes;
+  let formattedHours = seconds <= 9 ? `0${hour}` : hour;
   let clock = document.getElementById('hora_actual');
-  clock.textContent = `${hour}:${minutes}:${formattedSeconds}`;
+  clock.textContent = `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   if (hour % 3 === 0 && minutes === 0 && seconds === 0) {
     updateData();
   }
